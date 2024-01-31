@@ -17,16 +17,16 @@ global.owner = [
   ['966578700193']
 ];
 
-global.suittag = ['212605784394'];
-global.prems = ['212605784394'];
+global.suittag = ['966578700193'];
+global.prems = ['966578700193'];
 
-global.packname = 'bobiza bot';
-global.author = 'bobiza';
-global.wm = 'bobiza';
+global.packname = '𝔞𝔩𝔦 𝔮𝔲𝔱𝔢𝔢𝔫𝔞𝔥';
+global.author = '𝔞𝔩𝔦 𝔮𝔲𝔱𝔢𝔢𝔫𝔞𝔥';
+global.wm = '𝔞𝔩𝔦 𝔮𝔲𝔱𝔢𝔢𝔫𝔞𝔥';
 global.titulowm = 'bobiza';
-global.titulowm2 = `bobiza`
-global.igfg = 'bobiza';
-global.wait = '*|🏃| loading...*\n*نحاول تلبية طلبكم لا تستعجلوا* ♥\ninstagram.com/ali_quteenah';
+global.titulowm2 = `𝔞𝔩𝔦 𝔮𝔲𝔱𝔢𝔢𝔫𝔞𝔥`
+global.igfg = '𝔞𝔩𝔦 𝔮𝔲𝔱𝔢𝔢𝔫𝔞𝔥';
+global.wait = '*إنتظر جاري تلبيـة طلبك📩*';
 global.imagen1 = fs.readFileSync('./Menu2.jpg');
 global.imagen2 = fs.readFileSync('./src/nuevobot.jpg');
 global.imagen3 = fs.readFileSync('./src/Pre Bot Publi.png');
