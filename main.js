@@ -329,15 +329,14 @@ global.reloadHandler = async function(restatConn) {
     conn.ev.off('creds.update', conn.credsUpdate);
   }
 
-  conn.welcome = '👋 ¡Welcome/to!\n@user';
-  conn.bye = '👋 ¡See you later!\n@user';
-  conn.spromote = '*[ ℹ️ ] @user He was promoted to administrator.*';
-  conn.sdemote = '*[ ℹ️ ] @user He was demoted from administrator.*';
-  conn.sDesc = '*[ ℹ️ ] The group description has been modified.*';
-  conn.sSubject = '*[ ℹ️ ] The group name has been changed.*';
-  conn.sIcon = '*[ ℹ️ ] The group profile photo has been changed.*';
-  conn.sRevoke = '*[ ℹ️ ] The group invite link has been reset.*';
-
+  conn.welcome = '*╮ ───═┅─┅─┅═─── ╭*\n*│❯ @subject*\n*╯ ───═┅─┅─┅═─── ╰*\n*│❯ @user*\n*│❯ مرحبـا بك معاك بوت:اسمي #الكنج* \n*│*\n*│❯ 🏵️وصــف المجمـــوعه🏵️:*\n\n@desc\n\n*│*\n*│❯ نتمنـى ان تسعـد وتستفيـيد معنا🌸!!*\n*╯ ───═┅─┅─┅═─── ╰*'
+conn.bye = '*╮ ───═┅─┅─┅═─── ╭*\n*│❯* @user*\n*│❯ لقد غادر المجمــوعه🤧 👋🏻* \n*╯ ───═┅─┅─┅═─── ╰*'
+conn.spromote = '*@user تم ترقيتـٓك الى مشــرف للمجموعه💥😎!!*'
+conn.sdemote = '*@user لم تعــد مشـرف في المجموعه🙄 !!*'
+conn.sDesc = '*تم تعـديل وصـف المجموعه📜*\n\n*الوصـف الجـديد📄:* @desc'
+conn.sSubject = '*تم تغيـــر اسـم المجمـوعه✔️*\n*الاسـم الجــديد✨:* @subject'
+conn.sIcon = '*تـم تغيـر صورة المجموعه🎇!!*'
+conn.sRevoke = '*تم حـذف رابـط المجمـوعه🙄!!*\n*رابـط المجموعه الجـديد🚪📲:* @revoke'
   conn.handler = handler.handler.bind(global.conn);
   conn.participantsUpdate = handler.participantsUpdate.bind(global.conn);
   conn.groupsUpdate = handler.groupsUpdate.bind(global.conn);
@@ -490,7 +489,7 @@ setInterval(async () => {
   if (stopped === 'close' || !conn || !conn.user) return;
   const _uptime = process.uptime() * 1000;
   const uptime = clockString(_uptime);
-  const bio = `BOBIZA BOT [ ⏳ ] Uptime: ${uptime}`;
+  const bio = `*ꔹ━━━ꔹ❰الجنہـــــرال_ 🇾🇪❱ꔹ━━━ ꔹ*`;
   await conn.updateProfileStatus(bio).catch((_) => _);
 }, 60000);
 function clockString(ms) {
