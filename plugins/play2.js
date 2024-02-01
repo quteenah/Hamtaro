@@ -1,7 +1,7 @@
 import yts from 'yt-search'
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper-sosmed'
 let handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw ` مثال :\n*.play2* sami yusuf`
+  if (!text) throw ` مثال :\n*.حمل* فلسطين بلادي`
   let res = await yts(text)
   let vid = res.videos[0]
   await conn.sendMessage(m.chat, { react: { text: "⏳",key: m.key,}
@@ -38,7 +38,7 @@ mimetype: 'audio/mp4', fileName: `${title}`, contextInfo: { externalAdReply: { s
 mediaType:  2,
 mediaUrl: url,
 title: title,
-body: "© BOBIZA",
+body: "© 𝔞𝔩𝔦 𝔮𝔲𝔱𝔢𝔢𝔫𝔞𝔥",
 sourceUrl: url,
 thumbnail: await(await conn.getFile(thumbnail)).data                                                                     
                                                                                                                  }
@@ -48,7 +48,7 @@ thumbnail: await(await conn.getFile(thumbnail)).data
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
-handler.command = /^play2$/i
+handler.command = /^حمل$/i
 
 handler.exp = 0
 export default handler
