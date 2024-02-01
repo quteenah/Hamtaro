@@ -15,12 +15,12 @@ var handler = async (m, { conn, command, text, usedPrefix }) => {
     let { authorName, title, thumbnail, duration, viewH, publishedTime, url } = vid;
 
     let caption = `╭──── 〔 Y O U T U B E 〕 ─⬣
-⬡ : ${title}
-⬡ : ${authorName}
-⬡ : ${duration}
-⬡ : ${viewH}
-⬡ : ${publishedTime}
-⬡ : ${url}
+الاسـم : ${title}
+الملـف : ${authorName}
+المده : ${duration}
+العرض : ${viewH}
+تاريخ النشر : ${publishedTime}
+الرابط : ${url}
 ╰────────⬣`;
 
     conn.reply(m.chat, caption, m, {
@@ -55,6 +55,6 @@ var handler = async (m, { conn, command, text, usedPrefix }) => {
 
 handler.help = ['play'].map((v) => v + ' <pencarian>')
 handler.tags = ['downloader']
-handler.command = /^play3$/i
+handler.command = /^تحميل2$/i
 
 export default handler
