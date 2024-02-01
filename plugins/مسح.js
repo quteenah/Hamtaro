@@ -1,15 +1,43 @@
-import { webp2png } from '../lib/webp2mp4.js'
-let handler = async (m, { conn, usedPrefix, command }) => {
-const notStickerMessage = `*رد علي الملصق الذي تريد تحويله لصوره ${usedPrefix + command}*`
-if (!m.quoted) throw notStickerMessage
-const q = m.quoted || m
-let mime = q.mediaType || ''
-if (!/sticker/.test(mime)) throw notStickerMessage
-let media = await q.download()
-let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
-await conn.sendFile(m.chat, out, 'error.png', null, m)
-}
-handler.help = ['toimg (reply)']
-handler.tags = ['sticker']
-handler.command = ['لصوره', 'الصوره', 'لصورة']
-export default handler
+import axios from 'axios';
+import FormData from 'form-data';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+
+const handler = async (m, { conn, text }) => {
+  try {
+    const q = m.quoted ? m.quoted : m;
+    const mime = (q.msg || q).mimetype || '';
+    const img = await q.download();
+    let apikey = 'kjskun6VQWWm2hWSpN7ierFg' //replace with your apikey if its dead
+    const formData = new FormData();
+    formData.append('size', 'auto');
+    formData.append('image_file', img, 'file.jpg');
+
+    const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
+      headers: {
+        ...formData.getHeaders(),
+        'X-Api-Key': apikey,
+      },
+      responseType: 'arraybuffer',
+      encoding: null,
+    });
+
+    if (response.status !== 200) {
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
+    }
+
+    const imageData = response.data;
+
+    fs.writeFileSync('no-bg.png', imageData);
+
+    // Add the caption to the image
+    const caption = '*╮ ───═┅─┅─┅═─── ╭*      🇾🇪_ *الجنہـــــرال* \n*تم مسح خلفية الصوره* 😎. \n*╯ ───═┅─┅─┅═─── ╰*♥\ninstagram.com/ali_quteenah';
+    conn.sendFile(m.chat, 'no-bg.png', '', caption, m);
+  } catch (e) {
+    console.error(e);
+    m.reply('هذا الامر خاص بحذف خلفية اي صورة \n ارسل للبوت اي صورة تريد حذف خلفيتها ثم قم بالاشارة للصورة واكتب \n*.مسح*');
+  }
+};
+handler.command = /^rg3|مسح$/i;
+export default handler;
