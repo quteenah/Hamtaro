@@ -38,7 +38,7 @@ let handler = async (m, {
 }
 handler.help = ['texttopdf']
 handler.tags = ['tools']
-handler.command = /^(بديف)$/i
+handler.command = /^(بيديف)$/i
 export default handler
 
 async function textToPDFBuffer(text) {
