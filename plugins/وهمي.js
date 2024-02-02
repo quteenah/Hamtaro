@@ -36,7 +36,7 @@ let handler = async (m, {
         }
         
         if (feature == "الرقم") {
-        if (!inputs) return m.reply("طـريقــة الادخــال")
+        if (!inputs) return m.reply("طـريقــة الادخــال خطأ مثال: *.وهمي|الرقم*")
             try {
                 let res = await listNumber(inputs, inputs_ = '')
                 let teks = res.map((item, index) => {
@@ -52,7 +52,7 @@ let handler = async (m, {
         }
         
         if (feature == "الكود") {
-        if (!inputs) return m.reply("طـريقــة الادخـال")
+        if (!inputs) return m.reply("طـريقــة الادخـال خطأ مثال: *.وهمي|الرقم")
             try {
                 let res = await listCode(inputs)
                 let teks = res.map((item, index) => {
@@ -142,4 +142,4 @@ async function listCode(url) {
   });
 
   return result;
-                  }
+                                    }
