@@ -9,6 +9,6 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['cleartmp']
 handler.tags = ['owner']
 handler.owner = true
-handler.command = /^(cleartmp)$/i
+handler.command = /^(كلير)$/i
 
 export default handler
