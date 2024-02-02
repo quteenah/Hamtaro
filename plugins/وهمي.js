@@ -16,7 +16,7 @@ let handler = async (m, {
     ]
 
     let [feature, inputs, inputs_, inputs__, inputs___] = text.split("|")
-    if (!lister.includes(feature)) return m.reply("هذا الامر يعطيك ارقام وهمية راسـل المطـور لتعرف كيفية استخدامة \n https://api.whatsapp.com/send?phone=+966578700193" \n + lister.map((v, index) => "  ○ " + v).join("\n"))
+    if (!lister.includes(feature)) return m.reply("هذا الامر يعطيك ارقام وهمية راسـل المطـور لتعرف كيفية استخدامة \n https://api.whatsapp.com/send?phone=+966578700193\n" + lister.map((v, index) => "  ○ " + v).join("\n"))
 
     if (lister.includes(feature)) {
     
