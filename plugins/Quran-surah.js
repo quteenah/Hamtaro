@@ -7,7 +7,7 @@ let quranSurahHandler = async (m, { conn }) => {
     let surahInput = m.text.split(' ')[1];
 
     if (!surahInput) {
-      throw new Error(`يرجـى كتـابة اسم السـوره او رقمهـا بعد الامر مثـال: سوره. الكوثر`);
+      throw new Error(`يرجـى كتـابة اسم السـوره او رقمهـا بعد الامر مثـال: .سوره الكوثر`);
     }
 
     let surahListRes = await fetch('https://quran-endpoint.vercel.app/quran');
@@ -33,19 +33,19 @@ let quranSurahHandler = async (m, { conn }) => {
     let json = await res.json();
 
     // Translate tafsir from Bahasa Indonesia to Urdu
-    let translatedTafsirUrdu = await translate(json.data.tafsir.id, { to: 'ur', autoCorrect: true });
+    let translatedTafsirUrdu = await translate(json.data.tafsir.id, { to: 'ar', autoCorrect: true });
 
     // Translate tafsir from Bahasa Indonesia to English
-    let translatedTafsirArabic = await translate(json.data.tafsir.id, { to: 'ar', autoCorrect: true });
+    let translatedTafsirArabic = await translate(json.data.tafsir.id, { to: 'en', autoCorrect: true });
 
     let quranSurah = `
 🕌 *الـقــرآن الكــــريم*\n
 📜 *ســوره ${json.data.number}: ${json.data.asma.ar.long} (${json.data.asma.en.long})*\n
 نـوع: ${json.data.type.ar}\n
 عــدد الايـــات: ${json.data.ayahCount}\n
-🔮 *تفسيـر (اوردو):*\n
+🔮 *تفسيـر (العربيه):*\n
 ${translatedTafsirUrdu.text}\n
-🔮 *تفسيـر (العربية):*\n
+🔮 *تفسيـر (الانجليزيه):*\n
 ${translatedTafsirArabic.text}`;
 
     m.reply(quranSurah);
@@ -64,8 +64,3 @@ quranSurahHandler.tags = ['quran', 'surah'];
 quranSurahHandler.command = ['سورة', 'سوره']
 
 export default quranSurahHandler;
-
-  
-  
-  
-  
