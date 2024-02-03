@@ -40,7 +40,7 @@ handler.limit = 0
 handler.help = ['صوت' , 'فيديو'].map(v => v + ' <texto>')
 handler.tags = ['downloader']
 handler.command = ['صوت', 'فيديو']
-handler.limit = 1
+
 export default handler
 
 function bytesToSize(bytes) {
