@@ -1,4 +1,3 @@
-
 import translate from '@vitalets/google-translate-api'
 const defaultLang = 'en'
 const tld = 'cn'
@@ -8,14 +7,13 @@ let handler = async (m, { args, usedPrefix, command }) => {
 💝 Quteenah 💝
          Translator
 
-🔊 مثال :
-
-.translate ar مرحبا
-.translate en Hello World
- 
+🔊 مثال :للعربيه 
+.ترجمه ar yes
+🔊 مثال :للانجليزيه
+.ترجمه en نعم
                    اللغــات: 
-..
-زر هذا الرابط لتعرف جنيع اختصارات اللغات 
+
+زر هذا الرابط لتعرف جميع اختصارات اللغات 
 
 https://cloud.google.com/translate/docs/languages
 `.trim()
