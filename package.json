@@ -72,6 +72,7 @@
     "@prevter/tiktok-scraper":"*",
     "api-dylux": "^1.2.2",
     "@vitalets/google-translate-api":"*",
+    "@adiwajshing/baileys":"*",
     "stream":"*",
     "pdfkit":"*",
     "aptoide-scraper":"*",
