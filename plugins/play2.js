@@ -48,7 +48,7 @@ thumbnail: await(await conn.getFile(thumbnail)).data
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
-handler.command = /^حمل$/i
+handler.command = /^شغل$/i
 
 handler.exp = 0
 export default handler
