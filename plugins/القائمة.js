@@ -21,7 +21,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
     const taguser = '@' + m.sender.split('@s.whatsapp.net')[0];
     const doc = ['pdf', 'zip', 'vnd.openxmlformats-officedocument.presentationml.presentation', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'vnd.openxmlformats-officedocument.wordprocessingml.document'];
     const document = doc[Math.floor(Math.random() * doc.length)];
-    const str = ` لم يتم اضافة جميع الميزات الموجوده في القائمة اذا لم يعمل معك امر اعلم انه لم يتم اضافته بعد
+    const str = ` *تم تحـديث قائمة الاوامر*
 ╮───────────────╭ـ 
 │⚝ ⃟✨❯ *اهلا بك, ${taguser}*
 ︎╯───────────────╰ـ
@@ -64,6 +64,8 @@ ${(conn.user.jid == global.conn.user.jid ? '' : `Jadibot de: https://wa.me/${glo
 │───────────────╰ـ
 *╮ ───═┅─┅─┅═─── ╭*
 *│⚝ ⃟👥❯ ${usedPrefix}بوت*
+*│⚝ ⃟👥❯ ${usedPrefix}جيمي*
+*│⚝ ⃟👥❯ ${usedPrefix}مساعد*
 *│⚝ ⃟👥❯ ${usedPrefix}ارسم*
 *│⚝ ⃟👥❯ ${usedPrefix}جيتا*
 *│⚝ ⃟👥❯ ${usedPrefix}تحدث*
@@ -85,6 +87,7 @@ ${(conn.user.jid == global.conn.user.jid ? '' : `Jadibot de: https://wa.me/${glo
 │───────────────╰ـ
 *╮ ───═┅─┅─┅═─── ╭*
 *│⚝ ⃟📸❯ ${usedPrefix}صوره*
+*│⚝ ⃟📸❯ ${usedPrefix}بينترست*
 *│⚝ ⃟📸❯ ${usedPrefix}صور*
 *│⚝ ⃟🎬❯ ${usedPrefix}حمل*
 *│⚝ ⃟📽️❯ ${usedPrefix}تنزيل*
@@ -97,6 +100,7 @@ ${(conn.user.jid == global.conn.user.jid ? '' : `Jadibot de: https://wa.me/${glo
 *│⚝ ⃟📽️❯ ${usedPrefix}انستجرام*
 *│⚝ ⃟🎻❯ ${usedPrefix}اغنيه*
 *│⚝ ⃟🎵❯ ${usedPrefix}تحميل*
+*│⚝ ⃟🎵❯ ${usedPrefix}2تحميل*
 *│⚝ ⃟⏳❯ ${usedPrefix}ميديافاير*
 *│⚝ ⃟🎭❯ ${usedPrefix}تطبيق*
 *╯ ───═┅─┅─┅═─── ╰*
@@ -160,10 +164,12 @@ ${(conn.user.jid == global.conn.user.jid ? '' : `Jadibot de: https://wa.me/${glo
 *│⚝ ⃟📓❯ ${usedPrefix}كود*
 *│⚝ ⃟🌦️❯ ${usedPrefix}طقس*
 *│⚝ ⃟🖼️❯ ${usedPrefix}لوجو*
+*│⚝ ⃟🖼️❯ ${usedPrefix}تويت*
 *│⚝ ⃟🎨❯ ${usedPrefix}تلوين*
 *│⚝ ⃟🏞️❯ ${usedPrefix}تحسين*
 *│⚝ ⃟👀❯ ${usedPrefix}تصفية*
-*│⚝ ⃟🪄❯ ${usedPrefix}بديف*
+*│⚝ ⃟🪄❯ ${usedPrefix}بيديف*
+*│⚝ ⃟🪄❯ ${usedPrefix}توبيديف*
 *│⚝ ⃟🖌️❯ ${usedPrefix}مسح*
 *│⚝ ⃟📱❯ ${usedPrefix}وهمي*
 *╯ ───═┅─┅─┅═─── ╰*`.trim();
