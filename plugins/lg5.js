@@ -1,7 +1,7 @@
 import  fetch from 'node-fetch'
 let handler = async (m, { conn, args }) => {
   let response = args.join(' ').split('|')
-  if (!args[0]) throw 'مثال :\n*.لوجو5* علي'
+  if (!args[0]) throw 'مثال :\n*.لوجو5* ali'
   m.reply('_إنتظر..._')
   let res = `https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=water-logo&script=water-logo&fontsize=90&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextColor=%23000&shadowGlowColor=%23000&backgroundColor=%23000&text=${response[0]}`
   conn.sendFile(m.chat, res, 'bobiza.jpg', `instagram.com/ali_quteenah`, m, false)
