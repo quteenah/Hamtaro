@@ -6,7 +6,7 @@ let handler  = async (m, { conn }) => {
  `.trim() 
  conn.reply(m.chat, teks, m, { mentions: { mentionedJid: [m.sender] }}) 
  } 
- handler.customPrefix = /سكس|sex|جنس|السكس|الجنس|زب|كس|sexe/i 
+ handler.customPrefix = /سكس|sex|جنس|السكس|الجنس|زب|sexe/i 
  handler.command = new RegExp 
   
  export default handler 
