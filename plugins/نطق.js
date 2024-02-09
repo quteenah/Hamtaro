@@ -472,7 +472,7 @@ let handler = async (m, {
     let lister = ListVoiceArray(ListVoice)
     let readMore = String.fromCharCode(8206).repeat(4001);
 
-    let query = `مثال :\n.انطق 21|مرحبا انا اسمي علي مطور بوت الجنرال أفضل بوت في العالم\n\n*لائحة المعلقين حسب الترقيم*\n\nتابعني في الانستغرام\ninstagram.com/ali_quteenah\n\n\n` + readMore + lister.map((v, index) => "  " + (index + 1) + ". " + v).join("\n");
+    let query = `مثال :\n. انطق 21|مرحبا انا اسمي علي مطور بوت الجنرال أفضل بوت في العالم\n\n*لائحة المعلقين حسب الترقيم يمكنك اضافة علامات التشكيل لجعل النطق صحيح*\n\nتابعني في الانستغرام\ninstagram.com/ali_quteenah\n\n\n` + readMore + lister.map((v, index) => "  " + (index + 1) + ". " + v).join("\n");
     
     let text
     if (args.length >= 1) {
