@@ -55,6 +55,6 @@ var handler = async (m, { conn, command, text, usedPrefix }) => {
 
 handler.help = ['play'].map((v) => v + ' <pencarian>')
 handler.tags = ['downloader']
-handler.command = /^تحميل2$/i
+handler.command = /^تحميل$/i
 
 export default handler
