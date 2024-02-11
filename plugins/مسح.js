@@ -9,7 +9,7 @@ const handler = async (m, { conn, text }) => {
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || '';
     const img = await q.download();
-    let apikey = 'kjskun6VQWWm2hWSpN7ierFg' //replace with your apikey if its dead
+    let apikey = '11K55AdFmGuSSopTpuWNhybU' //replace with your apikey if its dead
     const formData = new FormData();
     formData.append('size', 'auto');
     formData.append('image_file', img, 'file.jpg');
@@ -17,7 +17,7 @@ const handler = async (m, { conn, text }) => {
     const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
       headers: {
         ...formData.getHeaders(),
-        '11K55AdFmGuSSopTpuWNhybU': apikey,
+        'X-Api-Key': apikey,
       },
       responseType: 'arraybuffer',
       encoding: null,
