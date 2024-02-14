@@ -1,10 +1,19 @@
-import axios from "axios"
-let handler = async (m, {command, conn, usedPrefix}) => {
-let res = (await axios.get(`https://raw.githubusercontent.com/Guru322/api/Guru/BOT-JSON/anime-${command}.json`)).data  
-let haha = await res[Math.floor(res.length * Math.random())]   
-conn.sendFile(m.chat, haha, 'error.jpg', `_${command}_`, m)
-//conn.sendButton(m.chat, `_${command}_`.trim(), author, haha, [['🔄 NEXT 🔄', `${usedPrefix + command}`]], m)    
+import fetch from 'node-fetch'
+
+let handler = async (m, { conn, text }) => {
+    if (!text) throw 'What do you want to create?'
+    m.react(rwait)
+    let msg = encodeURIComponent(text)
+    let res = await fetch(`https://aemt.me/bingimg?text=${msg}`)
+    let data = await res.json()
+    console.log(data)
+    let buffer = data.result
+    conn.sendFile(m.chat, buffer, 'image.png', `${text}`, m)
+    m.react(done)
 }
-handler.command = handler.help = ['akira', 'akiyama', 'anna', 'asuna', 'ayuzawa', 'boruto', 'chiho', 'chitoge', 'deidara', 'erza', 'elaina', 'eba', 'emilia', 'hestia', 'hinata', 'inori', 'isuzu', 'itachi', 'itori', 'kaga', 'kagura', 'kaori', 'keneki', 'kotori', 'kurumi', 'madara', 'mikasa', 'miku', 'minato', 'naruto', 'nezuko', 'sagiri', 'sasuke', 'sakura']
-handler.tags = ['aaa']
+
+handler.help = ['bingimg <query>']
+handler.tags = ['AI']
+handler.command = /^bingimg$/i
+
 export default handler
