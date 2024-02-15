@@ -1,26 +1,44 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `*This command generates images from text prompts*\n\n*𝙴xample usage*\n*◉ ${usedPrefix + command} Beautiful anime girl*\n*◉ ${usedPrefix + command} Elon Musk in pink output*`;
+  if (!text && !(m.quoted && m.quoted.text)) {
+    throw `Please provide some text , Example usage ${usedPrefix}img sunnyleone`;
+  }
+  if (!text && m.quoted && m.quoted.text) {
+    text = m.quoted.text;
+  }
+
+  const match = text.match(/(\d+)/);
+  const numberOfImages = match ? parseInt(match[1]) : 1;
 
   try {
-    m.reply('*Please wait, generating images...*');
+    m.reply('*Please wait*');
 
-    const endpoint = `https://cute-tan-gorilla-yoke.cyclic.app/imagine?text=${encodeURIComponent(text)}`;
-    const response = await fetch(endpoint);
-    
-    if (response.ok) {
-      const imageBuffer = await response.buffer();
-      await conn.sendFile(m.chat, imageBuffer, 'image.png', null, m);
-    } else {
-      throw '*Image generation failed*';
+    const images = [];
+
+    for (let i = 0; i < numberOfImages; i++) {
+      const endpoint = `https://api.guruapi.tech/api/googleimage?text=${encodeURIComponent(text)}`;
+      const response = await fetch(endpoint);
+
+      if (response.ok) {
+        const imageBuffer = await response.buffer();
+        images.push(imageBuffer);
+      } else {
+        throw '*Image generation failed*';
+      }
+    }
+
+
+    for (let i = 0; i < images.length; i++) {
+      await conn.sendFile(m.chat, images[i], `image_${i + 1}.png`, null, m);
     }
   } catch {
     throw '*Oops! Something went wrong while generating images. Please try again later.*';
   }
 };
 
-handler.help = ['dalle'];
-handler.tags = ['AI'];
-handler.command = ['dalle', 'gen', 'imagine', 'openai2'];
+handler.help = ['image'];
+handler.tags = ['fun'];
+handler.command = ['img', 'gimage'];
+
 export default handler;
