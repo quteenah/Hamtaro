@@ -1,27 +1,31 @@
-import axios from 'axios';
 
-const handler = async (m, { conn, usedPrefix, command }) => {
-  try {
-    const response = await axios.get('https://meme-api.com/gimme', {
-      responseType: 'json', 
-    });
+import fetch from 'node-fetch'
+import { sticker } from '../lib/sticker.js'
 
-    const memeData = response.data;
-    const imageUrl = memeData.url;
-    const title = memeData.title;
+const fetchJson = (url, options) => new Promise(async (resolve, reject) => {
+fetch(url, options)
+.then(response => response.json())
+.then(json => {
+resolve(json)
+})
+.catch((err) => {
+reject(err)
+})})
 
-    
-    conn.sendFile(m.chat, imageUrl, 'meme.jpg', title, m);
-    m.react('😆');
-  } catch (error) {
-    console.error(error);
-    m.reply('Sorry, an error occurred while fetching the meme.');
-  }
-};
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+	
+if (!args[0]) throw `📌 Example : ${usedPrefix + command} 😎+🤑`
+if (!text.includes('+')) throw  `✳️ Separate the emoji with a *+* \n\n📌 Example : \n*${usedPrefix + command}* 😎+🤑`
+let [emoji, emoji2] = text.split`+`
+let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji)}_${encodeURIComponent(emoji2)}`)
+for (let res of anu.results) {
+let stiker = await sticker(false, res.url, global.packname, global.author)
+conn.sendFile(m.chat, stiker, null, { asSticker: true }, m)
+}}
 
-handler.help = ['meme'];
-handler.tags = ['fun'];
-handler.command = ['meme', 'memes'];
-handler.diamond = false;
+handler.help = ['emojimix <emoji+emoji>']
+handler.tags = ['sticker']
+handler.command = ['emojimix'] 
+handler.diamond = true
 
-export default handler;
+export default handler
