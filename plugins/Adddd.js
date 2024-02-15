@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
     console.log(data)
     let buffer = data.result
     conn.sendFile(m.chat, buffer, 'image.png', `${text}`, m)
-    m.react(done)
+    
 }
 
 handler.help = ['bingimg <query>']
