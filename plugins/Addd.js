@@ -1,55 +1,26 @@
 import fetch from 'node-fetch';
 
-
-
-const handler = async (m, {conn, text, usedPrefix, command}) => {
-
-  if (!text) {
-
-    throw `_*< IA - BARD />*_\n\n*[ ℹ️ ] Proporciona un texto.*\n\n*[ 💡 ] Ejemplo:* _${usedPrefix + command} Hola Bard, ¿cómo estás?_`;
-
-  }
-
-
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `*This command generates images from text prompts*\n\n*𝙴xample usage*\n*◉ ${usedPrefix + command} Beautiful anime girl*\n*◉ ${usedPrefix + command} Elon Musk in pink output*`;
 
   try {
+    m.reply('*Please wait, generating images...*');
 
-    conn.sendPresenceUpdate('composing', m.chat);
-
-
-
-    const API_URL = `https://vihangayt.me/tools/bard?q=${encodeURIComponent(text)}`;
-
-    const response = await fetch(API_URL);
-
-    const data = await response.json();
-
-
-
-    if (data.status && data.data) {
-
-      const respuestaAPI = data.data;
-
-      conn.reply(m.chat, respuestaAPI, m);
-
+    const endpoint = `https://cute-tan-gorilla-yoke.cyclic.app/imagine?text=${encodeURIComponent(text)}`;
+    const response = await fetch(endpoint);
+    
+    if (response.ok) {
+      const imageBuffer = await response.buffer();
+      await conn.sendFile(m.chat, imageBuffer, 'image.png', null, m);
     } else {
-
-      throw '_*< IA - BARD />*_\n\n*[ ℹ️ ] No se pudo obtener una respuesta válida.*';
-
+      throw '*Image generation failed*';
     }
-
-  } catch (error) {
-
-    throw `_*< IA - BARD />*_\n\n*[ ℹ️ ] Ocurrió un error. Por favor, inténtalo de nuevo más tarde.*`;
-
+  } catch {
+    throw '*Oops! Something went wrong while generating images. Please try again later.*';
   }
-
 };
 
-
-
-handler.command = /^bard$/i;
-
-
-
+handler.help = ['dalle'];
+handler.tags = ['AI'];
+handler.command = ['dalle', 'gen', 'imagine', 'openai2'];
 export default handler;
