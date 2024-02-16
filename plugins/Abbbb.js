@@ -1,29 +1,52 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
+import { translate } from '@vitalets/google-translate-api';
 
-let bpink = []
+const BASE_URL = 'https://bible-api.com';
 
-fetch('https://raw.githubusercontent.com/arivpn/dbase/master/kpop/blekping.txt')
+let bibleChapterHandler = async (m, { conn }) => {
+  try {
+    // Extract the chapter number or name from the command text.
+    let chapterInput = m.text.split(' ').slice(1).join('').trim();
 
-    .then(res => res.text())
+    if (!chapterInput) {
+      throw new Error(`Please specify the chapter number or name. Example: -bible john 3:16`);
+    }
 
-    .then(txt => bpink = txt.split('\n'))
+    // Encode the chapterInput to handle special characters
+    chapterInput = encodeURIComponent(chapterInput);
 
-let handler = async (m, { conn }) => {
+    // Make an API request to fetch the chapter information.
+    let chapterRes = await fetch(`${BASE_URL}/${chapterInput}`);
+    
+    if (!chapterRes.ok) {
+      throw new Error(`Please specify the chapter number or name. Example: -bible john 3:16`);
+    }
 
-    let img = bpink[Math.floor(Math.random() * bpink.length)]
+    let chapterData = await chapterRes.json();
 
-    if (!img) throw img
+    let translatedChapterHindi = await translate(chapterData.text, { to: 'hi', autoCorrect: true });
 
-    await conn.sendFile(m.chat, img, '', 'made by Guru', m, 0, { thumbnail: await (await fetch(img)).buffer() })
+    let translatedChapterEnglish = await translate(chapterData.text, { to: 'en', autoCorrect: true });
 
-}
+    let bibleChapter = `
+📖 *The Holy Bible*\n
+📜 *Chapter ${chapterData.reference}*\n
+Type: ${chapterData.translation_name}\n
+Number of verses: ${chapterData.verses.length}\n
+🔮 *Chapter Content (English):*\n
+${translatedChapterEnglish.text}\n
+🔮 *Chapter Content (Hindi):*\n
+${translatedChapterHindi.text}`;
 
-handler.help = ['blackpink']
+    m.reply(bibleChapter);
+  } catch (error) {
+    console.error(error);
+    m.reply(`Error: ${error.message}`);
+  }
+};
 
-handler.tags = ['image']
+bibleChapterHandler.help = ['bible [chapter_number|chapter_name]'];
+bibleChapterHandler.tags = ['religion'];
+bibleChapterHandler.command = ['bible', 'chapter'];
 
-handler.limit = false
-
-handler.command = /^(bpink|bp|blackpink)$/i
-
-export default handler
+export default bibleChapterHandler;
