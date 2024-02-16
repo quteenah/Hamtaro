@@ -4,7 +4,7 @@ let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, comman
   if (!args || !args[0]) throw `✳️ Example :\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`;
   if (!args[0].match(/youtu/gi)) throw `❎ Verify that it is a YouTube link.`;
 
-  m.react(rwait); 
+
 
   try {
     let q = '128kbps'; 
