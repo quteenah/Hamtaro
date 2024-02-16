@@ -12,7 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } else {
     array.push({ exists: false, jid: result })
     }}
-    let txt = 'Registered\n\n' + array.filter(v => v.exists).map(v => `• الرابط: wa.me/${v.jid.split('@')[0]}\n*• السيرة الذاتية:* ${v.status || 'descripiion'}\n*• تاريخ تعين السيرة:* ${formatDate(v.setAt)}`).join('\n\n') + '\n\n*غير مسجلة في واتساب*\n\n' + array.filter(v => !v.exists).map(v => v.jid.split('@')[0]).join('\n')
+    let txt = '*النتـائج🔍*\n*ارقام مسجلة في واتساب\n*' + array.filter(v => v.exists).map(v => `• الرابط: wa.me/${v.jid.split('@')[0]}\n*• السيرة الذاتية:* ${v.status || 'descripiion'}\n*• تاريخ تعين السيرة:* ${formatDate(v.setAt)}`).join('\n\n') + '\n\n*غير مسجلة في واتساب*\n\n' + array.filter(v => !v.exists).map(v => v.jid.split('@')[0]).join('\n')
     m.reply(txt)
     }
     handler.help = ['nowa']
