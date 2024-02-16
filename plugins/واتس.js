@@ -1,6 +1,6 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let regex = /x/g
-    if (!text) throw 'أكتب رقم للبحث عنه في واتساب'
+    if (!text) throw '*أكتب رقم للبحث عنه في واتساب يجب استخدام هذا الامر بحكمه لكي لايحظرك البوت اترك رقمين اوثلاثه في خانة التخمين x وكتب رقم تقريبي مثال:*\n*9677777777xx*\n*96777777777x*'
     if (!text.match(regex)) throw `*مثال: ${usedPrefix + command} 96771234567x*`
     let random = text.match(regex).length, total = Math.pow(10, random), array = []
     for (let i = 0; i < total; i++) {
