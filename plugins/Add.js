@@ -1,10 +1,42 @@
-import axios from "axios"
-let handler = async (m, {command, conn, usedPrefix}) => {
-let res = (await axios.get(`https://raw.githubusercontent.com/Guru322/api/Guru/BOT-JSON/anime-${command}.json`)).data  
-let haha = await res[Math.floor(res.length * Math.random())]   
-conn.sendFile(m.chat, haha, 'error.jpg', `_${command}_`, m)
-//conn.sendButton(m.chat, `_${command}_`.trim(), author, haha, [['🔄 NEXT 🔄', `${usedPrefix + command}`]], m)    
-}
-handler.command = handler.help = ['akira', 'akiyama', 'anna', 'asuna', 'ayuzawa', 'boruto', 'chiho', 'chitoge', 'deidara', 'erza', 'elaina', 'eba', 'emilia', 'hestia', 'hinata', 'inori', 'isuzu', 'itachi', 'itori', 'kaga', 'kagura', 'kaori', 'keneki', 'kotori', 'kurumi', 'madara', 'mikasa', 'miku', 'minato', 'naruto', 'nezuko', 'sagiri', 'sasuke', 'sakura']
-handler.tags = ['animee']
-export default handler
+import fetch from 'node-fetch';
+
+let handler = async (m, { conn, usedPrefix, args, command, text }) => {
+  if (!text) throw `You need to give the URL of Any Instagram video, post, reel, image`;
+  m.reply(wait);
+
+  let res;
+  try {
+    res = await fetch(`${gurubot}/igdlv1?url=${text}`);
+  } catch (error) {
+    throw `An error occurred: ${error.message}`;
+  }
+
+  let api_response = await res.json();
+
+  if (!api_response || !api_response.data) {
+    throw `No video or image found or Invalid response from API.`;
+  }
+
+  const mediaArray = api_response.data;
+
+  for (const mediaData of mediaArray) {
+    const mediaType = mediaData.type;
+    const mediaURL = mediaData.url_download;
+
+    let cap = `HERE IS THE ${mediaType.toUpperCase()} >,<`;
+
+    if (mediaType === 'video') {
+      
+      conn.sendFile(m.chat, mediaURL, 'instagram.mp4', cap, m);
+    } else if (mediaType === 'image') {
+      
+      conn.sendFile(m.chat, mediaURL, 'instagram.jpg', cap, m);
+    }
+  }
+};
+
+handler.help = ['instagram'];
+handler.tags = ['downloader'];
+handler.command = /^(instagram|igdl|ig|insta)$/i;
+
+export default handler;
