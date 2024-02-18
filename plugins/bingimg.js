@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) return m.reply('هذا الامر خاص بتوليد صور من bing سوف أعطيك مثالا تكتب هكذا :\n\n*.توليد* فتاه تبلغ من العمر 18 عاما، ترتدي قلنسوة أرجوانية مطبوع عليها كلمة "مرام"، تجلس وحيده تحت شجرة، تتأمل في السماء بينما تقرأ رسالة سعيده. بالون قلب ابيض يطير إلى الفضاء في صورة واقعية 3D. تم تعيين المشهد على خلفية ليلية ثلجية')
-    m.reply("تابع صاحب البوت في حساباته تشجيعا له ♥...\ninstagram.com/ali_quteenah")
+    m.reply("تابع صاحب البوت في حساباته تشجيعا له \n انتظر قليـلا يتم توليد الصور♥...\ninstagram.com/ali_quteenah")
 
     try {
         let response = await fetch(`https://api.maelyn.my.id/api/bingimage?prompt=${text}&apikey=zFLlyZf9nm`)
