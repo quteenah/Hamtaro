@@ -1,15 +1,15 @@
-import fetch from "node-fetch"
+import { pinterest } from '@bochilteam/scraper'
 
-let handler = async (m, { conn, isOwner, usedPrefix, command, text }) => {
-if (!text) throw 'Masukan Promptnya\nExample:\n.animedif neko girl, cute face, upper body, white hair, look at viewer'
-m.reply(wait)
-let anu = `https://api.clayzaaubert.my.id/api/ai/animediffusion?q=${text}&apikey=${global.clayza}`
-conn.sendFile(m.chat, anu, 'anu.jpg', `Prompt: ${text}`, m)
-    
+let handler = async(m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `Example use ${usedPrefix + command} minecraft`
+  const json = await pinterest(text)
+  conn.sendFile(m.chat, json.getRandom(), 'pinterest.jpg', `
+*Hasil pencarian*
+${text}
+`.trim(), m)
 }
-handler.help = ['animedif']
-handler.tags = ['ai']
-handler.command = /^(animedif)$/i
-handler.limit = true
-handler.premium = true
+handler.help = ['pinterest']
+handler.tags = ['internet']
+handler.command = /^(pinterest|pin)$/i
+
 export default handler
