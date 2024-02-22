@@ -32,7 +32,7 @@ conn.qurannData = conn.qurannData ? conn.qurannData : {};
 
   const instructions = "*‏﴿───═┅─📖─┅═───﴾* \n قم بالرد على هذه الرسالة برقم الآية المطلوبة وسارسلها لك صوت. \n يمكنك زيارة أنستغرام صاحب البوت لمعرفة المزيد عن هذه الميزة \n instagram.com/ali_quteenah";
 
-  let { key } = await m.reply(`📖قائمة الآيات في الصوره رقم${surahNumber}:\n *‏﴿───═┅─📖─┅═───﴾* \n ${formattedList}\n\n${instructions} \n *‏﴿───═┅─📖─┅═───﴾*`);
+  let { key } = await m.reply(`📖قائمة الآيات في السوره رقم${surahNumber}:\n *‏﴿───═┅─📖─┅═───﴾* \n ${formattedList}\n\n${instructions} \n *‏﴿───═┅─📖─┅═───﴾*`);
   // Store the Quran data in conn.qurannData variable for later use
   conn.qurannData[m.chat] = { list: Object.values(ayahs), key };
 };
