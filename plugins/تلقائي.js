@@ -13,7 +13,7 @@ let handler  = async (m, { conn }) => {
  `.trim() 
  conn.reply(m.chat, teks, m, { mentions: { mentionedJid: [m.sender] }}) 
  } 
- handler.customPrefix = /علي|المطور|علي|مرحبا|بوت/i 
+ handler.customPrefix = /علي|المطور|.|مرحبا|بوت/i 
  handler.command = new RegExp 
   
  export default handler 
