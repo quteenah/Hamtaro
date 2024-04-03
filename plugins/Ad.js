@@ -74,7 +74,7 @@ let handler = async (m, {
 }
 handler.help = ["manga"]
 handler.tags = ["anime"]
-handler.command = /^(manga)$/i
+handler.command = /^(مانجا)$/i
 export default handler
 
 /* New Line */
