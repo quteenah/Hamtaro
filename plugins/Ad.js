@@ -12,23 +12,23 @@ let handler = async (m, {
 }) => {
 
     let lister = [
-        "search",
-        "chapter",
-        "pdf"
+        "بحث",
+        "فصل",
+        "تنزيل"
     ]
 
     let [feature, inputs] = text.split("|")
-    if (!lister.includes(feature)) return m.reply("هذا الامر خاص بتحميل قصص المانغا على شكل pdf مثال نكتب هكذا\n\n```.manga search|naruto```\n\n\n*الأوامر التي سوف تستعلمها في هذا الأمر*\n" + lister.map((v, index) => "  ○ " + v).join("\n"))
+    if (!lister.includes(feature)) return m.reply("هذا الامر خاص بتحميل قصص المانغا على شكل مستنداتpdf مثال نكتب هكذا\n\n```.مانجا بحث|ناروتو```\n\n\n*الأوامر التي سوف تستعلمها بعد هذا الأمر*\n" + lister.map((v, index) => "  ○ " + v).join("\n"))
 
     if (lister.includes(feature)) {
 
-        if (feature == "search") {
-            if (!inputs) return m.reply("\n```Exemple: .manga search|naruto```")
+        if (feature == "بحث") {
+            if (!inputs) return m.reply("\n```مثال: .مانجا بحث|ناروتو```")
             await m.reply(wait)
             try {
                 let res = await search3asq(inputs)
                 let teks = res.map((item, index) => {
-                    return `- *Name:* ${item.name}\n- *Link:* ${item.link}`
+                    return `- *الاسم:* ${item.name}\n- *الرابط:* ${item.link}`
                 }).filter(v => v).join("\n\n________________________\n\n")
                 await m.reply(teks)
             } catch (e) {
@@ -36,13 +36,13 @@ let handler = async (m, {
             }
         }
 
-        if (feature == "chapter") {
-            if (!inputs) return m.reply("```Exemple: .manga chapter|link```")
+        if (feature == "فصل") {
+            if (!inputs) return m.reply("```مثال: .مانجا فصل|الرابط```")
             await m.reply(wait)
             try {
                 let res = await getAllChapters(inputs)
                 let teks = res.map((item, index) => {
-                    return `- *Title:* ${item.title}\n- *Link:* ${item.link}`
+                    return `- *العنـوان:* ${item.title}\n- *الرابط:* ${item.link}`
                 }).filter(v => v).join("\n\n________________________\n\n")
                 await m.reply(teks)
             } catch (e) {
@@ -50,15 +50,15 @@ let handler = async (m, {
             }
         }
 
-        if (feature == "pdf") {
-            if (!inputs) return m.reply("```Exemple: .manga pdf|link```")
+        if (feature == "تنزيل") {
+            if (!inputs) return m.reply("```مثال: .مانجا تنزيل|الرابط```")
             await m.reply(wait)
             try {
                 let data = await getChapterPdf(inputs)
                 const [, mangaTitle, chapterNumber] = inputs.match(/manga\/([^/]+)\/(\d+)\/$/);
                 const pdfTitle = `${mangaTitle.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())} : ${chapterNumber}`;
 
-                await conn.sendFile(m.chat, data, pdfTitle, "DONE", m, null, {
+                await conn.sendFile(m.chat, data, pdfTitle, "╮ ───═┅─┅─┅═─── ╭ •🇾🇪_ الجنہـــــرال_بــوت_ تم تحميل المستند ╯ ───═┅─┅─┅═─── ╰", m, null, {
   mimetype: 'application/pdf',
   contextInfo: {
     mentionedJid: [m.sender]
