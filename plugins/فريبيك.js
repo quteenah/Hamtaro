@@ -26,7 +26,7 @@ let handler = async (m, {
             })
 
     } catch (e) {
-        throw eror
+        
     }
 }
 handler.help = ["freepik"]
