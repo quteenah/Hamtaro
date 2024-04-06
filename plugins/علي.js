@@ -45,7 +45,7 @@ conn.akira = conn.akira ? conn.akira : {};
 
  const responseData = response.data;
  const hasil = responseData;
- await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }});
+ await conn.sendMessage(m.chat, { react: { text: `♥️`, key: m.key }});
  m.reply(hasil.answer)
  conn.akira[m.chat].pesan = messages
  } catch (error) {
