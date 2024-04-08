@@ -10,7 +10,7 @@ const handler = async (m, { conn, args, text, command, usedPrefix, isCreator, is
     }
   });
   let res = `https://api.lolhuman.xyz/api/idulfitri?apikey=Gatadios&text=${response[0]}`;
-  conn.sendFile(m.chat, res, 'idulfitri.jpg', 'instagram.com/noureddine_ouafy', m, false);
+  conn.sendFile(m.chat, res, 'idulfitri.jpg', '*╮ ──═┅─┅─┅═── ╭* \n•🇾🇪_ *الجنہـــــرال_بـوت*\n *╯ ──═┅─┅─┅═── ╰* \n*│❯طلبـــك*', m, false);
 };
 handler.help = ['aidfitr'];
 handler.tags = ['logo'];
