@@ -15,7 +15,7 @@ let result = $('div >  div > a').attr('href')
 await conn.sendFile(m.chat, result, '', 'Instagram: '+text, m)
 await m.react('✅')
 } catch (e) {
-throw eror
+
 }
 }
 handler.help = ['instagram3']
